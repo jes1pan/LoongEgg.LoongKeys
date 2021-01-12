@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:LoongEgg.ViewBase.Style.Themes"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <FontFamily x:Key="xFonts.Diaital">pack://application:,,,/Fonts/#Let's go Digital</FontFamily>
+    <system:Double x:Key="xFontSize.Small">16</system:Double>
+    <system:Double x:Key="xFontSize.Regular">24</system:Double>
+    <system:Double x:Key="xFontSize.Large">28</system:Double>
+    <system:Double x:Key="xFontSize.Title">60</system:Double>
+
+
+    <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
+        <Setter Property="FontFamily" Value="{StaticResource xFonts.Diaital}" />
+        <Setter Property="FontSize" Value="{StaticResource xFontSize.Regular}"/>
+    </Style>
+
+    <!--TextBlock不受control继承影响-->
+    <!--而且会影响button-->
+    <Style TargetType="{x:Type TextBlock}" x:Key="BaseTextBlockStyle">
+        <Setter Property="FontFamily" Value="{StaticResource xFonts.Diaital}" />
+        <Setter Property="FontSize" Value="{StaticResource xFontSize.Regular}"/>
+    </Style>
+
+    <!--所有控件默认字体字号-->
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}"/>
+    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseStyle}"/>
+    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}"/>
+    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}"/>
+    <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource BaseStyle}"/>
+</ResourceDictionary>

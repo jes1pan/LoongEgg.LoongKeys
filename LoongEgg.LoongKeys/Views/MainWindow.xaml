@@ -1,0 +1,51 @@
+﻿<Window x:Class="LoongEgg.LoongKeys.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LoongEgg.LoongKeys"
+        xmlns:vmb="clr-namespace:LoongEgg.ViewModelBase;assembly=LoongEgg.ViewModelBase"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="320" Width="360" 
+        WindowStyle="None" Background="Transparent" AllowsTransparency="True" Topmost="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="Blue" 
+                x:Name="title"
+                MouseLeftButtonDown="Border_MouseLeftButtonDown"
+                MouseLeave="Border_MouseLeave">
+            <x:Code>
+                <![CDATA[
+                    private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+                    {
+                        DragMove();
+                    }
+                    private void Border_MouseLeave(object sender, MouseEventArgs e) => title.Visibility=Visibility.Hidden;
+                ]]>
+            </x:Code>
+            <StackPanel HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        DataContext="{x:Static vmb:WindowStateManager.Instance}">
+                <Button Content="—" Command="{Binding CommandMinimze}" Style="{StaticResource ButtonStyle.Window}" />
+                <Button Content="[ ]" Command="{Binding CommandMaximize}" Style="{StaticResource ButtonStyle.Window}" />
+                <Button Content="X" Command="{Binding CommandClose}" Style="{StaticResource ButtonStyle.Window}" />
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" 
+                Background="White"
+                Opacity="0.7"
+                MouseEnter="Border_MouseEnter">
+            <x:Code>
+                <![CDATA[
+                    private void Border_MouseEnter(object sender, MouseEventArgs e) => title.Visibility = Visibility.Visible;
+                ]]>
+            </x:Code>
+            
+        </Border>
+    </Grid>
+</Window>
