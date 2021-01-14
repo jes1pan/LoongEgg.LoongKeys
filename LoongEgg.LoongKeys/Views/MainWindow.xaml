@@ -14,10 +14,40 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Background="Blue" 
+        <Border Grid.Row="0" Background="{StaticResource xBackground.Title}" 
                 x:Name="title"
+                CornerRadius="18,18,0,0"
                 MouseLeftButtonDown="Border_MouseLeftButtonDown"
                 MouseLeave="Border_MouseLeave">
+
+            <!--隐藏主体边框-->
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation To="Transparent"
+                                            Duration="0:0:0.2"
+                                            Storyboard.TargetName="mainContontBorder"
+                                            Storyboard.TargetProperty="BorderBrush.Color"/>
+                            <ObjectAnimationUsingKeyFrames
+                                Storyboard.TargetName="mainContontBorder"
+                                Storyboard.TargetProperty="CornerRadius">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius TopLeft="30" TopRight="30"
+                                                      BottomRight="30" BottomLeft="30"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ThicknessAnimation To="30"
+                                            Duration="0:0:0.2"
+                                            Storyboard.TargetName="mainContontBorder"
+                                            Storyboard.TargetProperty="BorderThickness"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+            <!--隐藏标题-->
             <x:Code>
                 <![CDATA[
                     private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -27,6 +57,7 @@
                     private void Border_MouseLeave(object sender, MouseEventArgs e) => title.Visibility=Visibility.Hidden;
                 ]]>
             </x:Code>
+            <!--三兄弟按钮-->
             <StackPanel HorizontalAlignment="Right"
                         Orientation="Horizontal"
                         DataContext="{x:Static vmb:WindowStateManager.Instance}">
@@ -37,15 +68,46 @@
         </Border>
 
         <Border Grid.Row="1" 
+                x:Name="mainContontBorder"
                 Background="White"
-                Opacity="0.7"
+                Opacity="1"
+                BorderBrush="{StaticResource xBackground.Title}"
+                BorderThickness="6"
                 MouseEnter="Border_MouseEnter">
+            <!--显示标题-->
             <x:Code>
                 <![CDATA[
                     private void Border_MouseEnter(object sender, MouseEventArgs e) => title.Visibility = Visibility.Visible;
                 ]]>
             </x:Code>
-            
+            <!--显示主体边框-->
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation To="{StaticResource xBackgroundColor.Title}"
+                                            Duration="0:0:0.2"
+                                            Storyboard.TargetName="mainContontBorder"
+                                            Storyboard.TargetProperty="BorderBrush.Color"/>
+                            <ObjectAnimationUsingKeyFrames
+                                Storyboard.TargetName="mainContontBorder"
+                                Storyboard.TargetProperty="CornerRadius">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius TopLeft="0" TopRight="0"
+                                                      BottomRight="0" BottomLeft="0"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ThicknessAnimation To="6"
+                                            Duration="0:0:0.2"
+                                            Storyboard.TargetName="mainContontBorder"
+                                            Storyboard.TargetProperty="BorderThickness"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
         </Border>
     </Grid>
 </Window>
+ 

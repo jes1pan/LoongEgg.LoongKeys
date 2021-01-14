@@ -25,12 +25,14 @@
         
         <Setter Property="Content" Value="Default Style"/>
     </Style>
-
+    
+    <!--三兄弟-->
     <Style BasedOn="{StaticResource ButtonStyle.Base}" 
            TargetType="{x:Type Button}"
            x:Key="ButtonStyle.Window">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="{StaticResource xBackground.Title}"/>
         <Setter Property="Height" Value="36"/>
         <Setter Property="Width" Value="36"/>
         <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource AncestorType=Window} }"/>
