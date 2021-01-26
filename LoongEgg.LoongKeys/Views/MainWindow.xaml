@@ -16,6 +16,7 @@
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Background="{StaticResource xBackground.Title}" 
                 x:Name="title"
+                SnapsToDevicePixels="True"
                 CornerRadius="18,18,0,0"
                 MouseLeftButtonDown="Border_MouseLeftButtonDown"
                 MouseLeave="Border_MouseLeave">
@@ -61,9 +62,9 @@
             <StackPanel HorizontalAlignment="Right"
                         Orientation="Horizontal"
                         DataContext="{x:Static vmb:WindowStateManager.Instance}">
-                <Button Content="—" Command="{Binding CommandMinimze}" Style="{StaticResource ButtonStyle.Window}" />
-                <Button Content="[ ]" Command="{Binding CommandMaximize}" Style="{StaticResource ButtonStyle.Window}" />
-                <Button Content="X" Command="{Binding CommandClose}" Style="{StaticResource ButtonStyle.Window}" />
+                <Button Content="—" Command="{Binding CommandMinimze}" Style="{StaticResource ButtonStyle.HoverGrowWindow}"/>
+                <Button Content="[ ]" Command="{Binding CommandMaximize}" Style="{StaticResource ButtonStyle.HoverGrowWindow}" />
+                <Button Content="X" Command="{Binding CommandClose}" Style="{StaticResource ButtonStyle.HoverGrowWindow}" />
             </StackPanel>
         </Border>
 
@@ -71,9 +72,13 @@
                 x:Name="mainContontBorder"
                 Background="White"
                 Opacity="1"
+                SnapsToDevicePixels="True"
                 BorderBrush="{StaticResource xBackground.Title}"
                 BorderThickness="6"
                 MouseEnter="Border_MouseEnter">
+            <Border.DataContext>
+                <local:MainContentViewModel ButtonIsEnabled="False"/>
+            </Border.DataContext>
             <!--显示标题-->
             <x:Code>
                 <![CDATA[
@@ -107,6 +112,11 @@
                     </BeginStoryboard>
                 </EventTrigger>
             </Border.Triggers>
+
+            <StackPanel>
+                <Button Width="160" IsEnabled="{Binding ButtonIsEnabled}" Style="{StaticResource ButtonStyle.IsEnableGrow}"/>
+                <Button Command="{Binding CommandFlipButtonIsEnable}"/>
+            </StackPanel>
         </Border>
     </Grid>
 </Window>

@@ -9,7 +9,7 @@
 
     <!-- Button Enabled -->
     <SolidColorBrush x:Key="xForeground.ButtonIsEnabled" Color="Blue"/>
-    <SolidColorBrush x:Key="xBackground.ButtonIsEnabled" Color="Yellow" />
+    <SolidColorBrush x:Key="xBackground.ButtonIsEnabled" Color="Transparent" />
     <SolidColorBrush x:Key="xBorderBrush.ButtonIsEnabled" Color="Blue" />
 
     <!-- Button UnEnabled -->
