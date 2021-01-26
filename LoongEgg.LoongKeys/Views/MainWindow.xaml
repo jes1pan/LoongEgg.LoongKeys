@@ -20,7 +20,7 @@
                 CornerRadius="18,18,0,0"
                 MouseLeftButtonDown="Border_MouseLeftButtonDown"
                 MouseLeave="Border_MouseLeave">
-
+        
             <!--隐藏主体边框-->
             <Border.Triggers>
                 <EventTrigger RoutedEvent="MouseLeave">
